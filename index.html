@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東京リアル治安マップ | 面積・凶悪犯罪考慮版</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 1000px; margin: 0 auto; }
+        .map-container { width: 100%; height: 70vh; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-top: 20px;}
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+
+    <h1>🚨 東京リアル治安マップ</h1>
+    <p>不動産サイトには載らない、面積あたりの犯罪密度と凶悪犯罪の重み付けを独自計算した治安マップです。<br>
+    ズームすると詳細な町丁目と境界線が表示されます。</p>
+
+    <div class="map-container">
+        <iframe src="./map/index.html"></iframe>
+    </div>
+
+</body>
+</html>
