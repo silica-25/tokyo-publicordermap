@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilterSelect();
     initRouteSearch();
     loadColumns(); 
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetTab = urlParams.get('tab');
+    
+    if (targetTab) {
+        // targetTab（今回は 'column-section'）を開くボタンを探す
+        const targetBtn = document.querySelector(`.nav-btn[data-target="${targetTab}"]`);
+        if (targetBtn) {
+            targetBtn.click(); // プログラム側で強制的にクリックして画面を切り替える
+        }
+    }
+    
 });
 
 function initMainNavigation() {
