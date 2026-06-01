@@ -763,17 +763,3 @@ function fnc__specialcol_(values, context) {
 function fnc_project_color(values, context) {
     return false;
 };
-
-
-
-function exp_label_r2ka13_1_eval_expression(context) {
-    // "地域名"
-
-    var feature = context.feature;
-    
-    if (feature.properties) {
-        return feature.get('地域名') ;
-    } else {
-        return feature.get('地域名') ;
-    }
-}
