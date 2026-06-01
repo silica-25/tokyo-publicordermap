@@ -84,59 +84,29 @@
             </div>
         </section>
 
+        <head>
+            <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        </head>
+
         <section id="column-section" class="main-section">
             <div class="column-container">
                 <div class="section-intro">
                     <h2><i class="fa-solid fa-book-open"></i> 防犯コラム・対策記事</h2>
-                    <p>地域ごとの犯罪データ傾向から考える、日常生活で実践できる具体的な防犯ノウハウを蓄積しています。</p>
                 </div>
 
-                <div class="column-grid">
-                    <article class="column-card tag-tier1">
-                        <div class="card-badge">凶悪犯罪対策</div>
-                        <div class="card-content">
-                            <h3>夜間の歓楽街・人通りの少ない道を安全に歩くための3つの鉄則</h3>
-                            <p class="card-summary">データ分析から見る「声かけ事案」の発生傾向と、歩きスマホやイヤホン着用がもたらす危険性。背後からの接近にいち早く気づくための警戒行動とは。</p>
-                            <div class="card-footer">
-                                <span class="date">2026/06/02</span>
-                                <span class="read-time"><i class="fa-regular fa-clock"></i> 徒歩対策・3分</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="column-card tag-tier2">
-                        <div class="card-badge">侵入窃盗対策</div>
-                        <div class="card-content">
-                            <h3>住宅街の死角を見破る。空き巣に「狙われやすい家」と効果的な補助錠対策</h3>
-                            <p class="card-summary">QGISデータによる侵入窃盗（Tier2）の多発エリア分析。わずか5分のゴミ出しでも施錠を徹底すべき理由と、手軽に導入できる防犯グッズを紹介。</p>
-                            <div class="card-footer">
-                                <span class="date">2026/05/28</span>
-                                <span class="read-time"><i class="fa-regular fa-clock"></i> 住宅防犯・4分</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="column-card tag-tier3">
-                        <div class="card-badge">窃盗・ひったくり対策</div>
-                        <div class="card-content">
-                            <h3>自転車盗難をゼロにする「ツーロック」の選び方とバッグの持ち方</h3>
-                            <p class="card-summary">最も発生件数が多い非侵入窃盗（Tier3）。駅前駐輪場での盗難を防ぐ強固な鍵の組み合わせと、バイクによるひったくりから身を守る歩行位置を解説。</p>
-                            <div class="card-footer">
-                                <span class="date">2026/05/15</span>
-                                <span class="read-time"><i class="fa-regular fa-clock"></i> 窃盗対策・3分</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="column-card placeholder-card">
-                        <div class="card-content">
-                            <h3><i class="fa-solid fa-plus"></i> 新しいコラムを執筆・追加する</h3>
-                            <p class="card-summary">QGISの分析結果や、新しいデータから得られた防犯の知見をここに記事としてどんどん追加していくことができます（HTMLにカードを追加するだけで自動整列します）。</p>
-                        </div>
-                    </article>
+                <div id="column-grid" class="column-grid">
+                    <div class="spinner" style="margin: 0 auto;"></div>
                 </div>
             </div>
         </section>
+
+        <div id="article-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <button id="close-modal" class="close-btn"><i class="fa-solid fa-xmark"></i> 閉じる</button>
+                <div id="article-body" class="markdown-body">
+                </div>
+            </div>
+        </div>
 
     </main>
 

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMainNavigation();
     initFilterSelect();
     initRouteSearch();
+    loadColumns();
 });
 
 /**
@@ -105,3 +106,72 @@ function initRouteSearch() {
         }, 1200);
     });
 }
+
+/**
+ * 4. コラムの自動読み込みと表示（ヘッドレスCMS風の実装）
+ */
+async function loadColumns() {
+    const grid = document.getElementById('column-grid');
+    if (!grid) return;
+
+    try {
+        // columns/list.json を読み込む
+        const response = await fetch('./columns/list.json');
+        const articles = await response.json();
+        
+        grid.innerHTML = ''; // ローディング表示を消す
+
+        // jsonのデータをもとにカードを自動生成
+        articles.forEach(article => {
+            const card = document.createElement('article');
+            card.className = `column-card tag-${article.tier}`;
+            card.innerHTML = `
+                <div class="card-badge">${article.badge}</div>
+                <div class="card-content">
+                    <h3>${article.title}</h3>
+                    <p class="card-summary">${article.summary}</p>
+                    <div class="card-footer">
+                        <span class="date">${article.date}</span>
+                        <span class="read-time"><i class="fa-regular fa-clock"></i> ${article.time}</span>
+                    </div>
+                </div>
+            `;
+            
+            // カードをクリックしたら記事を開く
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => openArticle(article.file));
+            grid.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("記事リストの読み込みに失敗しました", error);
+        grid.innerHTML = '<p>記事を読み込めませんでした。</p>';
+    }
+}
+
+/**
+ * Markdownファイルを読み込んで表示する
+ */
+async function openArticle(filename) {
+    const modal = document.getElementById('article-modal');
+    const articleBody = document.getElementById('article-body');
+    
+    articleBody.innerHTML = '<div class="spinner" style="margin: 50px auto;"></div>';
+    modal.style.display = 'flex'; // モーダルを表示
+
+    try {
+        // .md ファイルをフェッチして取得
+        const response = await fetch(`./columns/${filename}`);
+        const markdownText = await response.text();
+        
+        // marked.js を使って Markdown を HTML に変換
+        articleBody.innerHTML = marked.parse(markdownText);
+    } catch (error) {
+        articleBody.innerHTML = '<p>記事データの取得に失敗しました。</p>';
+    }
+}
+
+// モーダルを閉じる処理
+document.getElementById('close-modal')?.addEventListener('click', () => {
+    document.getElementById('article-modal').style.display = 'none';
+});
