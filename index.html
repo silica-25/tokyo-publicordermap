@@ -9,94 +9,136 @@
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="header">
+    <header class="main-header">
+        <div class="logo-area">
             <h1><i class="fa-solid fa-shield-halved"></i> 東京リアル治安マップ</h1>
             <span class="subtitle">不動産サイトには載らないリアルな治安指標</span>
         </div>
+        <nav class="main-nav">
+            <button class="nav-btn active" data-target="map-section"><i class="fa-solid fa-map-location-dot"></i> マップ（スコアリング・ルート）</button>
+            <button class="nav-btn" data-target="column-section"><i class="fa-solid fa-book-open"></i> 防犯コラム</button>
+        </nav>
+    </header>
 
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="map-filters"><i class="fa-solid fa-map-location-dot"></i> マップ</button>
-            <button class="tab-btn" data-tab="safe-route"><i class="fa-solid fa-route"></i> 安全ルート</button>
-            <button class="tab-btn" data-tab="prevention"><i class="fa-solid fa-lightbulb"></i> 防犯対策</button>
-        </div>
+    <main class="content-container">
 
-        <div id="map-filters" class="panel active">
-            <div class="section-title">
-                <h3>表示フィルター</h3>
-                <p>独自スコアに基づいたヒートマップの表示を切り替えます。</p>
-            </div>
-            <div class="input-group">
-                <label for="crime-type">犯罪種別スコア</label>
-                <select id="crime-type">
-                    <option value="total_danger">総合危険度（面積あたり）</option>
-                    <option value="tier1">凶悪犯罪（Tier1）</option>
-                    <option value="tier2">粗暴・侵入（Tier2）</option>
-                    <option value="tier3">非侵入窃盗・他（Tier3）</option>
-                </select>
-            </div>
-            <div class="info-card">
-                <h4><i class="fa-solid fa-circle-info"></i> 現在の表示ロジック</h4>
-                <p id="logic-desc">「対数_危険度レベル」に基づき、面積あたりの総合的な犯罪密度の高さをヒートマップ化しています。</p>
-            </div>
-        </div>
+        <section id="map-section" class="main-section active">
+            <div class="map-dashboard">
+                <div class="control-panel">
+                    
+                    <div class="panel-box">
+                        <div class="box-title">
+                            <h3><i class="fa-solid fa-sliders"></i> 表示スコアリング</h3>
+                            <p>独自ロジックに基づく危険度レベルの切り替え</p>
+                        </div>
+                        <div class="input-group">
+                            <label for="crime-type">犯罪種別スコア</label>
+                            <select id="crime-type">
+                                <option value="total_danger">総合危険度（面積あたり）</option>
+                                <option value="tier1">凶悪犯罪（Tier1: 強盗・暴行など）</option>
+                                <option value="tier2">粗暴・侵入（Tier2: 空き巣など）</option>
+                                <option value="tier3">非侵入窃盗（Tier3: 自転車盗など）</option>
+                            </select>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fa-solid fa-circle-info"></i> 現在の表示ロジック</h4>
+                            <p id="logic-desc">「対数_危険度レベル」に基づき、面積あたりの総合的な犯罪密度の高さをヒートマップ化しています。</p>
+                        </div>
+                    </div>
 
-        <div id="safe-route" class="panel">
-            <div class="section-title">
-                <h3>安全ルート作成（β版）</h3>
-                <p>危険度スコアが高いエリアを迂回するルートを検索します。</p>
-            </div>
-            <div class="input-group">
-                <label for="start-point">出発地</label>
-                <input type="text" id="start-point" placeholder="例: 新宿駅">
-            </div>
-            <div class="input-group">
-                <label for="end-point">目的地</label>
-                <input type="text" id="end-point" placeholder="例: 東京都庁">
-            </div>
-            <button class="action-btn" id="search-route-btn"><i class="fa-solid fa-magnifying-glass-location"></i> 安全ルートを検索</button>
-            
-            <div id="route-result" class="route-result-card" style="display: none;">
-                <h4>検索結果</h4>
-                <p>スコアによる迂回ルートを計算しました。（※現在はモック表示）</p>
-                <ul class="route-stats">
-                    <li>距離: <span id="res-dist">--</span></li>
-                    <li>所要時間: <span id="res-time">--</span></li>
-                    <li>最大危険度: <span id="res-danger" class="danger-high">高</span></li>
-                </ul>
-            </div>
-        </div>
+                    <div class="panel-box">
+                        <div class="box-title">
+                            <h3><i class="fa-solid fa-route"></i> 安全ルート作成（β版）</h3>
+                            <p>危険度スコアが高いエリアを迂回するルートを検索</p>
+                        </div>
+                        <div class="input-group">
+                            <label for="start-point">出発地</label>
+                            <input type="text" id="start-point" placeholder="例: 新宿駅">
+                        </div>
+                        <div class="input-group">
+                            <label for="end-point">目的地</label>
+                            <input type="text" id="end-point" placeholder="例: 東京都庁">
+                        </div>
+                        <button class="action-btn" id="search-route-btn"><i class="fa-solid fa-magnifying-glass-location"></i> 安全ルートを検索</button>
+                        
+                        <div id="route-result" class="route-result-card" style="display: none;">
+                            <h4>検索結果</h4>
+                            <p>スコアによる迂回ルートを計算しました。（※現在はモック表示）</p>
+                            <ul class="route-stats">
+                                <li>距離: <span id="res-dist">--</span></li>
+                                <li>所要時間: <span id="res-time">--</span></li>
+                                <li>最大危険度: <span id="res-danger" class="danger-high">高</span></li>
+                            </ul>
+                        </div>
+                    </div>
 
-        <div id="prevention" class="panel">
-            <div class="section-title">
-                <h3>こんな時はどうする？</h3>
-                <p>地域別の発生傾向に基づいた防犯対策</p>
-            </div>
-            
-            <div class="tips-card tier1-tips">
-                <h3><i class="fa-solid fa-triangle-exclamation"></i> 凶悪・粗暴犯に備える</h3>
-                <p>深夜帯の歓楽街周辺では「声かけ」からトラブルに発展するケースが多発。イヤホンを外し、周囲の音を聞き取れる状態にしておくことが重要です。</p>
-            </div>
+                </div>
 
-            <div class="tips-card tier2-tips">
-                <h3><i class="fa-solid fa-house-lock"></i> 侵入窃盗（空き巣）対策</h3>
-                <p>住宅街エリアでは、窓の施錠だけでなく「補助錠」の設置や、センサーライトの導入が効果的です。ゴミ出し等の短時間でも必ず施錠を。</p>
+                <div class="map-view">
+                    <iframe src="./map/index.html" id="map-frame" title="治安マップ"></iframe>
+                    <div id="loading-overlay" class="overlay" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>データを計算中...</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="tips-card tier3-tips">
-                <h3><i class="fa-solid fa-bicycle"></i> 自転車盗・ひったくり対策</h3>
-                <p>自転車は「ツーロック（2重ロック）」を徹底。歩行時はバッグを車道と反対側に持ち、後方からのバイクの接近に注意してください。</p>
+        <section id="column-section" class="main-section">
+            <div class="column-container">
+                <div class="section-intro">
+                    <h2><i class="fa-solid fa-book-open"></i> 防犯コラム・対策記事</h2>
+                    <p>地域ごとの犯罪データ傾向から考える、日常生活で実践できる具体的な防犯ノウハウを蓄積しています。</p>
+                </div>
+
+                <div class="column-grid">
+                    <article class="column-card tag-tier1">
+                        <div class="card-badge">凶悪犯罪対策</div>
+                        <div class="card-content">
+                            <h3>夜間の歓楽街・人通りの少ない道を安全に歩くための3つの鉄則</h3>
+                            <p class="card-summary">データ分析から見る「声かけ事案」の発生傾向と、歩きスマホやイヤホン着用がもたらす危険性。背後からの接近にいち早く気づくための警戒行動とは。</p>
+                            <div class="card-footer">
+                                <span class="date">2026/06/02</span>
+                                <span class="read-time"><i class="fa-regular fa-clock"></i> 徒歩対策・3分</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="column-card tag-tier2">
+                        <div class="card-badge">侵入窃盗対策</div>
+                        <div class="card-content">
+                            <h3>住宅街の死角を見破る。空き巣に「狙われやすい家」と効果的な補助錠対策</h3>
+                            <p class="card-summary">QGISデータによる侵入窃盗（Tier2）の多発エリア分析。わずか5分のゴミ出しでも施錠を徹底すべき理由と、手軽に導入できる防犯グッズを紹介。</p>
+                            <div class="card-footer">
+                                <span class="date">2026/05/28</span>
+                                <span class="read-time"><i class="fa-regular fa-clock"></i> 住宅防犯・4分</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="column-card tag-tier3">
+                        <div class="card-badge">窃盗・ひったくり対策</div>
+                        <div class="card-content">
+                            <h3>自転車盗難をゼロにする「ツーロック」の選び方とバッグの持ち方</h3>
+                            <p class="card-summary">最も発生件数が多い非侵入窃盗（Tier3）。駅前駐輪場での盗難を防ぐ強固な鍵の組み合わせと、バイクによるひったくりから身を守る歩行位置を解説。</p>
+                            <div class="card-footer">
+                                <span class="date">2026/05/15</span>
+                                <span class="read-time"><i class="fa-regular fa-clock"></i> 窃盗対策・3分</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="column-card placeholder-card">
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-plus"></i> 新しいコラムを執筆・追加する</h3>
+                            <p class="card-summary">QGISの分析結果や、新しいデータから得られた防犯の知見をここに記事としてどんどん追加していくことができます（HTMLにカードを追加するだけで自動整列します）。</p>
+                        </div>
+                    </article>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="map-container">
-        <iframe src="./map/index.html" id="map-frame" title="治安マップ"></iframe>
-        <div id="loading-overlay" class="overlay" style="display: none;">
-            <div class="spinner"></div>
-            <p>データを計算中...</p>
-        </div>
-    </div>
+    </main>
 
     <script src="app.js"></script>
 </body>
