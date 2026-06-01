@@ -384,26 +384,65 @@ body {
     .map-view { height: 50vh; }
 }
 
-/* 記事モーダル（ポップアップ）のデザイン */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6); z-index: 1000;
-    display: flex; justify-content: center; align-items: center;
+/* --- 記事詳細専用ページのデザイン --- */
+.article-page-container {
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 40px 20px;
 }
-.modal-content {
-    background: #fff; width: 90%; max-width: 800px; height: 85vh;
-    border-radius: 10px; padding: 30px; position: relative;
-    overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-.close-btn {
-    position: absolute; top: 15px; right: 15px; background: #eee;
-    border: none; padding: 8px 15px; border-radius: 20px;
-    cursor: pointer; font-weight: bold;
-}
-.close-btn:hover { background: #ddd; }
 
-/* マークダウン記事内のデザイン */
-.markdown-body h1 { color: var(--primary-color); border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px; }
-.markdown-body h2 { color: var(--secondary-color); margin: 25px 0 15px; border-left: 4px solid var(--accent-color); padding-left: 10px; }
-.markdown-body p { line-height: 1.8; color: #444; margin-bottom: 15px; }
-.markdown-body ul { margin-left: 20px; margin-bottom: 15px; line-height: 1.6; }
+.article-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent-color); }
+
+/* 記事本文(Markdown)の装飾 */
+.markdown-body h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+.markdown-body h2 {
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+    margin: 35px 0 15px;
+    border-left: 5px solid var(--accent-color);
+    padding-left: 12px;
+}
+.markdown-body p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333333;
+    margin-bottom: 20px;
+}
+.markdown-body ul, .markdown-body ol {
+    margin-left: 25px;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+.markdown-body li {
+    margin-bottom: 8px;
+}
+
+/* 共通パーツ（リンク用aタグの調整） */
+.main-nav a.nav-btn {
+    text-decoration: none;
+}
+

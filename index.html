@@ -25,7 +25,6 @@
         <section id="map-section" class="main-section active">
             <div class="map-dashboard">
                 <div class="control-panel">
-                    
                     <div class="panel-box">
                         <div class="box-title">
                             <h3><i class="fa-solid fa-sliders"></i> 表示スコアリング</h3>
@@ -35,9 +34,9 @@
                             <label for="crime-type">犯罪種別スコア</label>
                             <select id="crime-type">
                                 <option value="total_danger">総合危険度（面積あたり）</option>
-                                <option value="tier1">凶悪犯罪（Tier1: 強盗・暴行など）</option>
-                                <option value="tier2">粗暴・侵入（Tier2: 空き巣など）</option>
-                                <option value="tier3">非侵入窃盗（Tier3: 自転車盗など）</option>
+                                <option value="tier1">凶悪犯罪（Tier1）</option>
+                                <option value="tier2">粗暴力・侵入（Tier2）</option>
+                                <option value="tier3">非侵入窃盗（Tier3）</option>
                             </select>
                         </div>
                         <div class="info-card">
@@ -60,18 +59,15 @@
                             <input type="text" id="end-point" placeholder="例: 東京都庁">
                         </div>
                         <button class="action-btn" id="search-route-btn"><i class="fa-solid fa-magnifying-glass-location"></i> 安全ルートを検索</button>
-                        
                         <div id="route-result" class="route-result-card" style="display: none;">
                             <h4>検索結果</h4>
-                            <p>スコアによる迂回ルートを計算しました。（※現在はモック表示）</p>
                             <ul class="route-stats">
                                 <li>距離: <span id="res-dist">--</span></li>
                                 <li>所要時間: <span id="res-time">--</span></li>
-                                <li>最大危険度: <span id="res-danger" class="danger-high">高</span></li>
+                                <li>最大危険度: <span id="res-danger">--</span></li>
                             </ul>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="map-view">
@@ -84,29 +80,17 @@
             </div>
         </section>
 
-        <head>
-            <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        </head>
-
         <section id="column-section" class="main-section">
             <div class="column-container">
                 <div class="section-intro">
                     <h2><i class="fa-solid fa-book-open"></i> 防犯コラム・対策記事</h2>
+                    <p>テキストファイル（.md）を追加するだけで一覧ページが自動更新されます。</p>
                 </div>
-
                 <div id="column-grid" class="column-grid">
                     <div class="spinner" style="margin: 0 auto;"></div>
                 </div>
             </div>
         </section>
-
-        <div id="article-modal" class="modal-overlay" style="display: none;">
-            <div class="modal-content">
-                <button id="close-modal" class="close-btn"><i class="fa-solid fa-xmark"></i> 閉じる</button>
-                <div id="article-body" class="markdown-body">
-                </div>
-            </div>
-        </div>
 
     </main>
 
